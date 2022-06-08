@@ -1,0 +1,8 @@
+<div class="rates-container">
+  <p>
+    sample: 1 USD -> {{ testCurrency }}
+    <span *ngIf="exchangeRates">{{
+      exchangeRates.conversion_rates[testCurrency]
+    }}</span>
+  </p>
+</div>

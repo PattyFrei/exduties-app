@@ -1,8 +1,54 @@
-<div class="rates-container">
-  <p>
-    sample: 1 USD -> {{ testCurrency }}
-    <span *ngIf="exchangeRates">{{
-      exchangeRates.conversion_rates[testCurrency]
-    }}</span>
-  </p>
+<div class="rates-card">
+  <div class="convert-select-container">
+    <label class="label" for="purchase-value">Currency to convert from:</label>
+    <select
+      [(ngModel)]="convertFrom"
+      (ngModelChange)="onConvertFromChange($event)"
+    >
+      <option disabled>Select currency</option>
+      <option
+        *ngFor="let currency of currencies"
+        [value]="currency.id"
+        [hidden]="currency.id === convertFrom"
+      >
+        {{ currency.id }} - {{ currency.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="convert-select-container">
+    <label class="label" for="purchase-value">Currency to convert to:</label>
+    <select [(ngModel)]="convertTo" (ngModelChange)="onConvertToChange($event)">
+      <option disabled>Select currency</option>
+      <option
+        *ngFor="let currency of currencies"
+        [value]="currency.id"
+        [hidden]="currency.id === convertTo"
+      >
+        {{ currency.id }} - {{ currency.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="base-exchange-container">
+    Current exchange rate: 1 {{ convertFrom }} =
+    <span *ngIf="exchangeRates"
+      >{{ exchangeRates.conversion_rates[convertTo].toFixed(2) }}
+      {{ convertTo }}</span
+    >
+  </div>
+
+  <div class="purchase-value-container">
+    <label class="label" for="purchase-value">Type your purchase value</label>
+    <input
+      class="input"
+      id="purchase-value"
+      [(ngModel)]="purchaseValue"
+      type="number"
+    />
+    <span>{{ convertFrom }}</span>
+    <span *ngIf="exchangeRates && purchaseValue">
+      = {{ convertPurchaseValue() }} {{ convertTo }}</span
+    >
+  </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExchangeRate } from '../models/exchange.model';
 import { ExchangeRateService } from '../services/exchange-rate.service';
-import { Currency, CURRENCIES } from '../models/currencies';
+import { CURRENCIES } from '../models/currencies';
 
 @Component({
   selector: 'app-exchange-rate',
@@ -9,11 +9,18 @@ import { Currency, CURRENCIES } from '../models/currencies';
   styleUrls: ['./exchange-rate.component.scss'],
 })
 export class ExchangeRateComponent implements OnInit {
+  public totalCosts: number = 0;
+  public convertToCurrency: string = '';
+
+  public buttonCta = 'Calculate import costs';
   public convertFrom = 'USD';
   public convertTo = 'EUR';
   public currencies = CURRENCIES;
   public exchangeRates: ExchangeRate | undefined;
-  public purchaseValue: number | undefined;
+  public isImport = false;
+
+  public purchaseCosts: number = 0;
+  public shippingCosts: number = 0;
   private previousConvertFrom = this.convertFrom;
   private previousConvertTo = this.convertTo;
 
@@ -33,12 +40,22 @@ export class ExchangeRateComponent implements OnInit {
     this.exchangeRates = data;
   }
 
-  public convertPurchaseValue(): number | string {
-    if (this.purchaseValue && this.exchangeRates) {
-      return (
-        this.purchaseValue * this.exchangeRates.conversion_rates[this.convertTo]
-      ).toFixed(2);
-    } else return '';
+  public convertPurchaseValue(): number {
+    if (this.exchangeRates) {
+      const purchaseCosts =
+        this.purchaseCosts *
+        this.exchangeRates.conversion_rates[this.convertTo];
+      return purchaseCosts;
+    } else return 0;
+  }
+
+  public convertShippingCosts(): number {
+    if (this.exchangeRates) {
+      const shippingCosts =
+        this.shippingCosts *
+        this.exchangeRates.conversion_rates[this.convertTo];
+      return shippingCosts;
+    } else return 0;
   }
 
   public onConvertFromChange(event: string): void {
@@ -57,5 +74,16 @@ export class ExchangeRateComponent implements OnInit {
       this.previousConvertFrom = this.convertFrom;
       this.getExchangeRates();
     }
+  }
+
+  public getTotalCosts(): number {
+    return this.convertShippingCosts() + this.convertPurchaseValue();
+  }
+
+  public calculateImportCosts(): void {
+    this.isImport = true;
+    this.buttonCta = 'Recalculate import costs';
+    this.convertToCurrency = this.convertTo;
+    this.totalCosts = this.getTotalCosts();
   }
 }

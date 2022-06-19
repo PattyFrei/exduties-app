@@ -17,12 +17,19 @@
   }
 
   .purchase-value-container {
-    display: block;
+    display: inline-block;
     margin: 20px 0;
+    min-width: 225px;
+  }
+
+  .shipping-value-container {
+    display: inline-block;
+    margin: 20px 0 0 50px;
   }
 
   .label {
     display: block;
+    margin-bottom: 2px;
   }
 
   .input {

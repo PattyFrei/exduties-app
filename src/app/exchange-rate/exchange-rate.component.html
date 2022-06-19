@@ -39,16 +39,45 @@
   </div>
 
   <div class="purchase-value-container">
-    <label class="label" for="purchase-value">Type your purchase value</label>
+    <label class="label" for="purchase-value">Your purchase costs:</label>
     <input
       class="input"
       id="purchase-value"
-      [(ngModel)]="purchaseValue"
+      [(ngModel)]="purchaseCosts"
       type="number"
     />
     <span>{{ convertFrom }}</span>
-    <span *ngIf="exchangeRates && purchaseValue">
-      = {{ convertPurchaseValue() }} {{ convertTo }}</span
+    <span *ngIf="exchangeRates && purchaseCosts">
+      = {{ convertPurchaseValue().toFixed(2) }} {{ convertTo }}</span
     >
   </div>
+
+  <div class="shipping-value-container">
+    <label class="label" for="purchase-value">Your shipping costs:</label>
+    <input
+      class="input"
+      id="shipping-costs"
+      [(ngModel)]="shippingCosts"
+      type="number"
+    />
+    <span>{{ convertFrom }}</span>
+    <span *ngIf="exchangeRates && shippingCosts">
+      = {{ convertShippingCosts().toFixed(2) }} {{ convertTo }}</span
+    >
+  </div>
+
+  <div>Total costs: {{ getTotalCosts().toFixed(2) }} {{ convertTo }}</div>
+  <br />
+
+  <div>
+    <span>Do you want to import products to Germany?</span>
+    <button (click)="calculateImportCosts()">{{ buttonCta }}</button>
+  </div>
+</div>
+
+<div *ngIf="isImport">
+  <app-duties
+    [totalCosts]="totalCosts"
+    [convertTo]="convertToCurrency"
+  ></app-duties>
 </div>

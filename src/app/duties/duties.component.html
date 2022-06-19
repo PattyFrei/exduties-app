@@ -1,0 +1,81 @@
+<div *ngIf="convertTo !== 'EUR'" class="duties-card">
+  Import costs can only be calculated if the purchase costs are converted to
+  Euro.
+</div>
+
+<div *ngIf="convertTo === 'EUR'" class="duties-card">
+  <span>Import from:</span>
+  <div class="radio-button">
+    <input
+      id="none-eu"
+      type="radio"
+      value="none-eu"
+      name="location"
+      [checked]="!isEuLocation"
+      (click)="onEuLocationChange(false)"
+    />
+    <label for="none-eu">None EU Country</label>
+  </div>
+
+  <div class="radio-button">
+    <input
+      id="eu"
+      type="radio"
+      value="eu"
+      name="location"
+      [checked]="isEuLocation"
+      (click)="onEuLocationChange(true)"
+    />
+    <label for="eu">EU Country</label>
+  </div>
+
+  <div *ngIf="!isEuLocation" class="sales-tax-container">
+    <span>Sales tax info for imports to Germany:</span>
+
+    <div class="checkbox">
+      <input
+        id="de"
+        type="checkbox"
+        value="de"
+        name="tax-type"
+        [checked]="isStandardTax"
+        (click)="onIsDeStandardTaxChange()"
+      />
+      <label for="de">Use standard tax type</label>
+    </div>
+
+    <div>
+      <span>Sales tax ({{ (getTaxRate() * 100).toFixed() }}%): </span>
+      <span> {{ calculateSalesTax().toFixed(2) }} {{ convertTo }} </span>
+    </div>
+  </div>
+
+  <div class="sales-tax">
+    <div *ngIf="!isEuLocation">
+      <span>Total costs (excl. sales tax):</span>
+      <span> {{ calculateTotalCostsWithoutTax() }} {{ convertTo }} </span>
+      <br />
+    </div>
+    <span>Total costs:</span>
+    <span> {{ calculateTotalCosts().toFixed(2) }} {{ convertTo }} </span>
+  </div>
+
+  <div *ngIf="!isEuLocation" class="duties-container">
+    <span>
+      When the total costs for imports exceed 150 Euro, duties will be applied.
+      Duty rates depend on the product being imported and range from 0% to 12%.
+      Special excise are applied for pure alcohol (13.03 €/liter), roasted
+      coffee (2.19 €/kg), instant coffee (4.78 €/kg).
+    </span>
+    <div *ngIf="hasDuties()">
+      Total costs with duty rate (6%):
+      {{ getTotalCostsWithDuties(0.06).toFixed(2) }}
+      {{ convertTo }}
+    </div>
+    <div *ngIf="hasDuties()">
+      Total costs with duty rate (12%):
+      {{ getTotalCostsWithDuties(0.12).toFixed(2) }}
+      {{ convertTo }}
+    </div>
+  </div>
+</div>

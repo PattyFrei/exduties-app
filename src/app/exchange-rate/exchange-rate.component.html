@@ -32,47 +32,52 @@
 
   <div class="base-exchange-container">
     Current exchange rate: 1 {{ convertFrom }} =
-    <span *ngIf="exchangeRates"
-      >{{ exchangeRates.conversion_rates[convertTo].toFixed(2) }}
-      {{ convertTo }}</span
-    >
+    <span *ngIf="exchangeRates">
+      {{ exchangeRates.conversion_rates[convertTo].toFixed(2) }}
+      {{ convertTo }}
+    </span>
   </div>
 
-  <div class="purchase-value-container">
+  <div class="costs-container">
     <label class="label" for="purchase-value">Your purchase costs:</label>
     <input
-      class="input"
       id="purchase-value"
       [(ngModel)]="purchaseCosts"
+      (ngModelChange)="onCostsChange()"
       type="number"
     />
     <span>{{ convertFrom }}</span>
     <span *ngIf="exchangeRates && purchaseCosts">
-      = {{ convertPurchaseValue().toFixed(2) }} {{ convertTo }}</span
-    >
+      = {{ convertPurchaseValue().toFixed(2) }} {{ convertTo }}
+    </span>
   </div>
 
-  <div class="shipping-value-container">
+  <div class="costs-container">
     <label class="label" for="purchase-value">Your shipping costs:</label>
     <input
-      class="input"
       id="shipping-costs"
       [(ngModel)]="shippingCosts"
+      (ngModelChange)="onCostsChange()"
       type="number"
     />
     <span>{{ convertFrom }}</span>
     <span *ngIf="exchangeRates && shippingCosts">
-      = {{ convertShippingCosts().toFixed(2) }} {{ convertTo }}</span
-    >
+      = {{ convertShippingCosts().toFixed(2) }} {{ convertTo }}
+    </span>
   </div>
 
-  <div>Total costs: {{ getTotalCosts().toFixed(2) }} {{ convertTo }}</div>
-  <br />
-
-  <div>
-    <span>Do you want to import products to Germany?</span>
-    <button (click)="calculateImportCosts()">{{ buttonCta }}</button>
+  <div class="total-costs">
+    Total costs: {{ getTotalCosts().toFixed(2) }} {{ convertTo }}
   </div>
+
+  <div>Do you want to import products to Germany?</div>
+  <button
+    class="import-button"
+    (click)="calculateImportCosts()"
+    [class.flashing]="shouldRecalculate"
+  >
+    {{ buttonCta }}
+  </button>
 </div>
 
 <div *ngIf="isImport">

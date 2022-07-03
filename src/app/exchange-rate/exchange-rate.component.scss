@@ -1,14 +1,32 @@
 .rates-card {
-  max-width: 100%;
+  width: 450px;
   margin: 20px;
-  padding: 10px 20px;
-  border: 3px solid black;
-  box-shadow: 20px 10px 0 wheat;
-  background-color: white;
+  padding: 20px;
+  border: 1px solid #9f95df;
+  border-radius: 10px;
+
+  box-shadow: 15px 15px 42px -10px rgba(0, 0, 0, 0.42);
+  -webkit-box-shadow: 15px 15px 42px -10px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: 15px 15px 42px -10px rgba(0, 0, 0, 0.42);
 
   .convert-select-container {
     display: inline-block;
-    margin: 10px 20px 10px 0;
+    margin-bottom: 10px;
+
+    &:first-child {
+      margin-right: 30px;
+    }
+
+    select {
+      font-size: 14px;
+      margin-top: 5px;
+      padding: 5px;
+      background-color: #2b264e;
+      border: 1px solid #9f95df;
+      border-radius: 5px;
+      color: #9f95df;
+      cursor: pointer;
+    }
   }
 
   .base-exchange-container {
@@ -16,15 +34,37 @@
     margin: 10px 0;
   }
 
-  .purchase-value-container {
-    display: inline-block;
+  .costs-container {
+    display: block;
     margin: 20px 0;
-    min-width: 225px;
-  }
 
-  .shipping-value-container {
-    display: inline-block;
-    margin: 20px 0 0 50px;
+    input {
+      width: 80px;
+      margin-right: 5px;
+      margin-top: 5px;
+      padding: 5px;
+      background-color: #2b264e;
+      border: 1px solid #9f95df;
+      border-radius: 5px;
+      color: #9f95df;
+      cursor: pointer;
+      -moz-appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &:focus-visible {
+        outline: #9f95df auto 1px;
+      }
+
+      &:hover {
+        color: #b8adff;
+        background-color: #463e7a;
+      }
+    }
   }
 
   .label {
@@ -32,9 +72,35 @@
     margin-bottom: 2px;
   }
 
-  .input {
-    display: inline-block;
-    width: 80px;
-    margin-right: 5px;
+  .total-costs {
+    margin-bottom: 10px;
+    color: rgb(63, 247, 26);
+  }
+
+  .import-button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #2b264e;
+    border: 1px solid #9f95df;
+    border-radius: 5px;
+    color: #9f95df;
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:hover {
+      color: #b8adff;
+      background-color: #463e7a;
+    }
+
+    &.flashing {
+      border: 1px solid #ddbd82;
+      color: #ddbd82;
+      background: linear-gradient(
+        90deg,
+        rgb(61, 44, 33) 0%,
+        rgb(62, 53, 30) 35%,
+        rgb(88, 91, 50) 100%
+      );
+    }
   }
 }

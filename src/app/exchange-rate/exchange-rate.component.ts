@@ -18,6 +18,7 @@ export class ExchangeRateComponent implements OnInit {
   public currencies = CURRENCIES;
   public exchangeRates: ExchangeRate | undefined;
   public isImport = false;
+  public shouldRecalculate = false;
 
   public purchaseCosts: number = 0;
   public shippingCosts: number = 0;
@@ -65,6 +66,7 @@ export class ExchangeRateComponent implements OnInit {
       this.previousConvertTo = this.convertTo;
     }
     this.getExchangeRates();
+    this.toggleRecalculateButtonFlash();
   }
 
   public onConvertToChange(event: string): void {
@@ -74,6 +76,7 @@ export class ExchangeRateComponent implements OnInit {
       this.previousConvertFrom = this.convertFrom;
       this.getExchangeRates();
     }
+    this.toggleRecalculateButtonFlash();
   }
 
   public getTotalCosts(): number {
@@ -85,5 +88,20 @@ export class ExchangeRateComponent implements OnInit {
     this.buttonCta = 'Recalculate import costs';
     this.convertToCurrency = this.convertTo;
     this.totalCosts = this.getTotalCosts();
+    this.toggleRecalculateButtonFlash(true);
+  }
+
+  public onCostsChange(): void {
+    this.toggleRecalculateButtonFlash();
+  }
+
+  private toggleRecalculateButtonFlash(shouldReset: boolean = false): void {
+    if (shouldReset) {
+      this.shouldRecalculate = false;
+      return;
+    }
+    if (this.buttonCta === 'Recalculate import costs') {
+      this.shouldRecalculate = true;
+    }
   }
 }

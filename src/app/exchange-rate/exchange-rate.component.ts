@@ -12,7 +12,7 @@ export class ExchangeRateComponent implements OnInit {
   public totalCosts: number = 0;
   public convertToCurrency: string = '';
 
-  public buttonCta = 'Calculate import costs';
+  public buttonCta = 'CALCULATE_IMPORT_COSTS';
   public convertFrom = 'USD';
   public convertTo = 'EUR';
   public currencies = CURRENCIES;
@@ -85,7 +85,7 @@ export class ExchangeRateComponent implements OnInit {
 
   public calculateImportCosts(): void {
     this.isImport = true;
-    this.buttonCta = 'Recalculate import costs';
+    this.buttonCta = 'RECALCULATE_IMPORT_COSTS';
     this.convertToCurrency = this.convertTo;
     this.totalCosts = this.getTotalCosts();
     this.toggleRecalculateButtonFlash(true);
@@ -100,7 +100,7 @@ export class ExchangeRateComponent implements OnInit {
       this.shouldRecalculate = false;
       return;
     }
-    if (this.buttonCta === 'Recalculate import costs') {
+    if (this.buttonCta === 'RECALCULATE_IMPORT_COSTS') {
       this.shouldRecalculate = true;
     }
   }

@@ -1,0 +1,22 @@
+{
+  "CONVERT_FROM": "Währung von der umgerechnet werden soll:",
+  "SELECT_CURRENCY": "Währung auswählen",
+  "CONVERT_TO": "Währung in die umgerechnet werden soll:",
+  "CURRENT_EXCHANGE_RATE": "Aktueller Wechselkurs: 1",
+  "PURCHASE_COSTS": "Ihre Einkaufskosten:",
+  "SHIPPING_COSTS": "Ihre Versandkosten:",
+  "TOTAL_COSTS": "Gesamtkosten:",
+  "IMPORT_GERMANY": "Möchten Sie Produkte nach Deutschland importieren?",
+  "IMPORT_EURO_INFO": "Die Importkosten können nur berechnet werden, wenn die Einkaufskosten in Euro umgerechnet werden.",
+  "IMPORT_FROM": "Importieren von:",
+  "NONE_EU_COUNTRY": "Kein EU-Land",
+  "EU_COUNTRY": "EU-Land",
+  "SALES_TAX": "Umsatzsteuer",
+  "SALES_TAX_INFO": "Informationen zur Umsatzsteuer bei der Einfuhr nach Deutschland:",
+  "STANDARD_TAX_RATE": "Normalen Steuersatz verwenden",
+  "TOTAL_COSTS_WITHOUT_TAX": "Gesamtkosten (exkl. MwSt.):",
+  "TOTAL_COSTS_WITH_DUTY": "Gesamtkosten mit Zollsatz ({{rate}}%):",
+  "CALCULATE_IMPORT_COSTS": "Berechne Importkosten",
+  "RECALCULATE_IMPORT_COSTS": "Berechne Importkosten erneut",
+  "DUTIES_INFO": "Wenn die Gesamtkosten für die Einfuhr 150 Euro übersteigen, werden Zölle erhoben. Die Zollsätze hängen von der eingeführten Ware ab und reichen von 0% bis 12%. Besondere Verbrauchssteuern werden für reinen Alkohol (13,03 €/Liter), gerösteten Kaffee (2,19 €/kg) und Instantkaffee (4,78 €/kg) erhoben."
+}

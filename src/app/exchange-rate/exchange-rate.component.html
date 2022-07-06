@@ -1,11 +1,13 @@
 <div class="rates-card">
   <div class="convert-select-container">
-    <label class="label" for="purchase-value">Currency to convert from:</label>
+    <label class="label" for="purchase-value">
+      {{ "CONVERT_FROM" | translate }}
+    </label>
     <select
       [(ngModel)]="convertFrom"
       (ngModelChange)="onConvertFromChange($event)"
     >
-      <option disabled>Select currency</option>
+      <option disabled>{{ "SELECT_CURRENCY" | translate }}</option>
       <option
         *ngFor="let currency of currencies"
         [value]="currency.id"
@@ -17,9 +19,11 @@
   </div>
 
   <div class="convert-select-container">
-    <label class="label" for="purchase-value">Currency to convert to:</label>
+    <label class="label" for="purchase-value">{{
+      "CONVERT_TO" | translate
+    }}</label>
     <select [(ngModel)]="convertTo" (ngModelChange)="onConvertToChange($event)">
-      <option disabled>Select currency</option>
+      <option disabled>{{ "SELECT_CURRENCY" | translate }}</option>
       <option
         *ngFor="let currency of currencies"
         [value]="currency.id"
@@ -31,7 +35,7 @@
   </div>
 
   <div class="base-exchange-container">
-    Current exchange rate: 1 {{ convertFrom }} =
+    {{ "CURRENT_EXCHANGE_RATE" | translate }} {{ convertFrom }} =
     <span *ngIf="exchangeRates">
       {{ exchangeRates.conversion_rates[convertTo].toFixed(2) }}
       {{ convertTo }}
@@ -39,7 +43,9 @@
   </div>
 
   <div class="costs-container">
-    <label class="label" for="purchase-value">Your purchase costs:</label>
+    <label class="label" for="purchase-value">{{
+      "PURCHASE_COSTS" | translate
+    }}</label>
     <input
       id="purchase-value"
       [(ngModel)]="purchaseCosts"
@@ -53,7 +59,9 @@
   </div>
 
   <div class="costs-container">
-    <label class="label" for="purchase-value">Your shipping costs:</label>
+    <label class="label" for="purchase-value">{{
+      "SHIPPING_COSTS" | translate
+    }}</label>
     <input
       id="shipping-costs"
       [(ngModel)]="shippingCosts"
@@ -67,16 +75,17 @@
   </div>
 
   <div class="total-costs">
-    Total costs: {{ getTotalCosts().toFixed(2) }} {{ convertTo }}
+    {{ "TOTAL_COSTS" | translate }} {{ getTotalCosts().toFixed(2) }}
+    {{ convertTo }}
   </div>
 
-  <div>Do you want to import products to Germany?</div>
+  <div>{{ "IMPORT_GERMANY" | translate }}</div>
   <button
     class="import-button"
     (click)="calculateImportCosts()"
     [class.flashing]="shouldRecalculate"
   >
-    {{ buttonCta }}
+    {{ buttonCta | translate }}
   </button>
 </div>
 

@@ -1,12 +1,13 @@
 <div *ngIf="convertTo !== 'EUR'" class="duties-card">
-  Import costs can only be calculated if the purchase costs are converted to
-  Euro.
+  {{ "IMPORT_EURO_INFO" | translate }}
 </div>
 
 <div *ngIf="convertTo === 'EUR'" class="duties-card">
-  <span>Import from:</span>
-  <div class="radio-button">
+  <span>{{ "IMPORT_FROM" | translate }}</span>
+
+  <div class="radio-button-container">
     <input
+      class="radio"
       id="none-eu"
       type="radio"
       value="none-eu"
@@ -14,11 +15,12 @@
       [checked]="!isEuLocation"
       (click)="onEuLocationChange(false)"
     />
-    <label for="none-eu">None EU Country</label>
+    <label for="none-eu">{{ "NONE_EU_COUNTRY" | translate }}</label>
   </div>
 
-  <div class="radio-button">
+  <div class="radio-button-container">
     <input
+      class="radio"
       id="eu"
       type="radio"
       value="eu"
@@ -26,14 +28,15 @@
       [checked]="isEuLocation"
       (click)="onEuLocationChange(true)"
     />
-    <label for="eu">EU Country</label>
+    <label for="eu">{{ "EU_COUNTRY" | translate }}</label>
   </div>
 
   <div *ngIf="!isEuLocation" class="sales-tax-container">
-    <span>Sales tax info for imports to Germany:</span>
+    <span>{{ "SALES_TAX_INFO" | translate }}</span>
 
-    <div class="checkbox">
+    <div class="checkbox-container">
       <input
+        #checkbox
         id="de"
         type="checkbox"
         value="de"
@@ -41,39 +44,46 @@
         [checked]="isStandardTax"
         (click)="onIsDeStandardTaxChange()"
       />
-      <label for="de">Use standard tax type</label>
+      <span class="checkmark" (click)="checkbox.click()"></span>
+      <label for="de">{{ "STANDARD_TAX_RATE" | translate }}</label>
     </div>
 
-    <div>
-      <span>Sales tax ({{ (getTaxRate() * 100).toFixed() }}%): </span>
+    <div class="sales-tax">
+      <span>
+        {{ "SALES_TAX" | translate }} ({{ (getTaxRate() * 100).toFixed() }}%):
+      </span>
       <span> {{ calculateSalesTax().toFixed(2) }} {{ convertTo }} </span>
     </div>
   </div>
 
   <div class="sales-tax">
-    <div *ngIf="!isEuLocation">
-      <span>Total costs (excl. sales tax):</span>
+    <div class="sales-tax-excluded" *ngIf="!isEuLocation">
+      <span>{{ "TOTAL_COSTS_WITHOUT_TAX" | translate }}</span>
       <span> {{ calculateTotalCostsWithoutTax() }} {{ convertTo }} </span>
       <br />
     </div>
-    <span>Total costs:</span>
-    <span> {{ calculateTotalCosts().toFixed(2) }} {{ convertTo }} </span>
+    <div class="sales-tax-included">
+      <span>{{ "TOTAL_COSTS" | translate }}</span>
+      <span> {{ calculateTotalCosts().toFixed(2) }} {{ convertTo }} </span>
+    </div>
   </div>
 
   <div *ngIf="!isEuLocation" class="duties-container">
-    <span>
-      When the total costs for imports exceed 150 Euro, duties will be applied.
-      Duty rates depend on the product being imported and range from 0% to 12%.
-      Special excise are applied for pure alcohol (13.03 €/liter), roasted
-      coffee (2.19 €/kg), instant coffee (4.78 €/kg).
-    </span>
-    <div *ngIf="hasDuties()">
-      Total costs with duty rate (6%):
+    <p class="duties-info">
+      {{ "DUTIES_INFO" | translate }}
+    </p>
+    <div *ngIf="hasDuties()" class="calculated-duties">
+      <span translate [translateParams]="{ rate: 6 }">
+        TOTAL_COSTS_WITH_DUTY
+      </span>
       {{ getTotalCostsWithDuties(0.06).toFixed(2) }}
       {{ convertTo }}
     </div>
-    <div *ngIf="hasDuties()">
-      Total costs with duty rate (12%):
+
+    <div *ngIf="hasDuties()" class="calculated-duties">
+      <span translate [translateParams]="{ rate: 12 }">
+        TOTAL_COSTS_WITH_DUTY
+      </span>
       {{ getTotalCostsWithDuties(0.12).toFixed(2) }}
       {{ convertTo }}
     </div>

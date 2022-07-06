@@ -1,4 +1,8 @@
 <div class="page-container">
   <h1>{{ title }}</h1>
+  <div class="flag-container">
+    <img src="assets/img/en.png" (click)="onChangeLanguage($event)" />
+    <img src="assets/img/de.png" (click)="onChangeLanguage($event)" />
+  </div>
   <app-exchange-rate></app-exchange-rate>
 </div>

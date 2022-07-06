@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ExchangeRateComponent } from './exchange-rate.component';
 import { ExchangeRateService } from '../services/exchange-rate.service';
@@ -10,9 +11,9 @@ describe('ExchangeRateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, TranslateModule.forRoot()],
       declarations: [ExchangeRateComponent],
-      providers: [ExchangeRateService],
+      providers: [ExchangeRateService, TranslateService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExchangeRateComponent);

@@ -1,0 +1,22 @@
+{
+  "CONVERT_FROM": "Currency to convert from:",
+  "SELECT_CURRENCY": "Select currency",
+  "CONVERT_TO": "Currency to convert to:",
+  "CURRENT_EXCHANGE_RATE": "Current exchange rate: 1",
+  "PURCHASE_COSTS": "Your purchase costs:",
+  "SHIPPING_COSTS": "Your shipping costs:",
+  "TOTAL_COSTS": "Total costs:",
+  "IMPORT_GERMANY": "Do you want to import products to Germany?",
+  "IMPORT_EURO_INFO": "Import costs can only be calculated if the purchase costs are converted to Euro.",
+  "IMPORT_FROM": "Import from:",
+  "NONE_EU_COUNTRY": "None EU Country",
+  "EU_COUNTRY": "EU Country",
+  "SALES_TAX": "Sales tax",
+  "SALES_TAX_INFO": "Sales tax info for imports to Germany:",
+  "STANDARD_TAX_RATE": "Use standard tax type",
+  "TOTAL_COSTS_WITHOUT_TAX": "Total costs (excl. sales tax):",
+  "TOTAL_COSTS_WITH_DUTY": "Total costs with duty rate ({{rate}}%):",
+  "CALCULATE_IMPORT_COSTS": "Calculate import costs",
+  "RECALCULATE_IMPORT_COSTS": "Recalculate import costs",
+  "DUTIES_INFO": "When the total costs for imports exceed 150 Euro, duties will be applied. Duty rates depend on the product being imported and range from 0% to 12%. Special excise are applied for pure alcohol (13.03 €/liter), roasted coffee (2.19 €/kg), instant coffee (4.78 €/kg)."
+}

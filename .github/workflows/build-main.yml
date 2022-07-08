@@ -30,7 +30,7 @@ jobs:
         npm install
         npm run-script gh-deploy
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v4
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BASE_BRANCH: main

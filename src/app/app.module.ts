@@ -10,7 +10,7 @@ import { ExchangeRateComponent } from './exchange-rate/exchange-rate.component';
 import { DutiesComponent } from './duties/duties.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
